@@ -16,15 +16,12 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-
-// Here is a small helper for you! Have a look.
-#include "ResourcePath.hpp"
-#include "ball.hpp"
+#include "game.hpp"
 #include <iostream>
 
 int main(int, char const**)
 {
-    Ball bouncy_ball;
+    Game bouncy_ball;
     bouncy_ball.Run();
     return 0;
     
