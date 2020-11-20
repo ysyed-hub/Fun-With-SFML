@@ -13,28 +13,37 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "scene_node.hpp"
+#include "resource_identifier.hpp"
 
-class Ball {
-    
-    float ball_velocity;
-    bool ball_falling;
+class Ball : private sf::NonCopyable {
+    sf::Vector2f ball_velocity;
+    bool falling;
     sf::CircleShape ball;
-    sf::RenderWindow my_window;
-    sf::Clock time;
     sf::Clock air_time;
-    sf::Time time_per_frame;
-    float max_velocity;
-    void ProcessEvents();
-    void Update();
-    void Render();
+    float vertical_velocity;
+    sf::RenderWindow& window;
+    sf::Clock time;
+
+
 public:
-    Ball();
-    void Run();
-    void Fall(float *ball_velocityptr);
-    void Rise(float *ball_velocityptr, float upward_velocity);
-    void SwitchDirection();
-    void DisplayInfo();
-    void Bounce();
+    Ball(sf::RenderWindow& window);
+    void Fall();
+    void Rise(float upward_velocity);
+    void SwitchVerticalDirection();
+    void SwitchHorizontalDirection();
+    void DisplayInfo() const;
+    sf::Vector2f GetPosition() const;
+    float GetAirTime() const;
+    sf::Vector2f GetVelocity() const;
+    void SetVelocity(sf::Vector2f new_velocity);
+    void SetVelocity(float x_velocity, float y_velocity);
+    void Update(sf::Time dt, bool key_pressed);
+    virtual void draw();
+    void Jump();
+    
 };
+
+
 
 #endif /* ball_hpp */
