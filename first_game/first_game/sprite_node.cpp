@@ -7,3 +7,13 @@
 //
 
 #include "sprite_node.hpp"
+
+SpriteNode::SpriteNode(const sf::Texture& Texture) : my_sprite(Texture) {}
+
+SpriteNode::SpriteNode(const sf::Texture& texture, const sf::IntRect& textureRect): my_sprite(texture, textureRect) {}
+
+void SpriteNode::DrawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    target.draw(my_sprite, states);
+}
+
